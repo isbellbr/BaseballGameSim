@@ -1,7 +1,7 @@
 # BaseballGameSim
 **Inspiration**
 
-Watching the World Series this year, I noticed that the managers of the Houston Astros and Philadelphia Phillies made several decisions that seemingly worsened their odds of winning the game. For example, manager Rob Thomson's decision to bat right fielder Nick Castellanos in the 5th spot of his lineup seemed rather questionable. Given that Castellanos was a poor hitter this season, it made for sense to me to place him at the bottom of the lineup. To determine the validity of my observations and theories, I created this simulator to determine whether certain lineup and/or game decisions would help the World Series teams win more games.
+Watching the World Series this year, I noticed that the managers of the Houston Astros and Philadelphia Phillies made several decisions that seemingly worsened their odds of winning the game. For example, manager Rob Thomson's decision to bat right fielder Nick Castellanos in the 5th spot of his lineup seemed rather questionable. Given Castellanos' poor hitting that season, it made sense to place him at the bottom of the lineup. To determine the validity of my observations and theories, I created this simulation to determine whether certain lineup and/or game decisions would help the World Series teams win more games.
 
 **What it does**
 
