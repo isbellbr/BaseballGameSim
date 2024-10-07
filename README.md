@@ -7,9 +7,9 @@ Watching the World Series this year, I noticed that the managers of the Houston 
 
 Presents the user with a choice between three options:
 
-Simulate one game and receive a game recap. A game recap consists of a box score and succinct summary of all scoring plays in the game.
-Simulate one game and receive a detailed play-by-play description of the game. This option also provides a box score following the play-by-play description.
-Simulate many games (determined by user input). Prints to the console the winning percentages of both teams in the amount of games specified by the user.
+1. Simulate one game and receive a game recap. A game recap consists of a box score and succinct summary of all scoring plays in the game. <br />
+2. Simulate one game and receive a detailed play-by-play description of the game. This option also provides a box score following the play-by-play description. <br />
+3. Simulate many games (determined by user input). Prints to the console the winning percentages of both teams in the amount of games specified by the user.
 
 **How I built it**
 
