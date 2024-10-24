@@ -1,0 +1,7 @@
+ - Learn how to display site on github pages
+ - Change the style of <p> depending on the state of the mode variable (use js to add classes)
+ - 
+
+ Big picture:
+ - Allow users to create their own teams
+ 

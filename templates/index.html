@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>MLB Game Simulation</title>
+    <script>
+        function toggleInput() {
+            const mode = document.getElementById('mode').value;
+            const numGamesInput = document.getElementById('numGamesInput');
+            if (mode === "3") {
+                numGamesInput.style.display = 'block';
+            } else {
+                numGamesInput.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>MLB Game Simulator</h1>
+        <form method="POST" action="/simulate">
+            <label for="mode">Select Simulation Mode:</label>
+            <select id="mode" name="mode" onchange="toggleInput()">
+                <option value="1">Game Recap</option>
+                <option value="2">Play by Play</option>
+                <option value="3">Many Games Simulation</option>
+            </select>
+            <label for="mode">Choose the Away Team</label>
+            <select id="away_team" name="away_team" onchange="toggleInput()">
+                <option value="1">Astros</option>
+                <option value="2">Phillies</option>
+            </select>
+            <div id="numGamesInput" style="display:none;">
+                <label for="num_games">Enter Number of Games:</label>
+                <input type="number" name="num_games" min="1" />
+            </div>
+            <button type="submit">Simulate</button>
+        </form>
+        {% if result %}
+            <p>{{ result }}</p>
+        {% endif %}
+        <div>
+            {{ table|safe }}
+        </div>
+    </div>
+</body>
+</html>
