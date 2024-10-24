@@ -2,13 +2,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    margin-top: 15vh;
     background-color: #f3f4f6;
     font-family: Arial, sans-serif;
 }
 
 .container {
     text-align: center;
+}
+
+#table_div {
+    display:flex;
+    justify-content: space-around;
+    padding-left: 50px;
+    padding-right: 50px;
+    flex-direction: column;
 }
 
 button {
@@ -18,8 +26,9 @@ button {
 }
 
 p {
-    font-size: 14px;
+    font-size: 18px;
     font-family: 'Times New Roman', Times, serif;
+    line-height: 30px;
 }
 
 table.data {
@@ -35,5 +44,6 @@ table.data th, table.data td {
 }
 
 table.data th {
-    background-color: #f2f2f2;
+    background-color: rgb(43, 43, 77);
+    color: white;
 }

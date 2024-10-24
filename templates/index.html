@@ -38,11 +38,13 @@
             </div>
             <button type="submit">Simulate</button>
         </form>
-        {% if result %}
-            <p>{{ result }}</p>
-        {% endif %}
-        <div>
-            {{ table|safe }}
+        <div id="table_div">
+            {% if table %}
+                {{ table|safe }}
+            {% endif %}
+            {% if result %}
+                <p>{{ result | safe }}</p>
+            {% endif %}
         </div>
     </div>
 </body>

@@ -699,7 +699,7 @@ def simulate_half_inning(game):
     game.team2score+=game.halfInningScore
   general_descriptions.append("\n")
   if game.teamAtBat == game.team2:
-    general_descriptions.append("End of Inning " + str(game.inning-1) + ".\nScore: " + game.team1.name + " " + str(game.team1score) + " " + game.team2.name + " " + str(game.team2score))
+    general_descriptions.append("End of Inning " + str(game.inning-1) + ".<b>Score: </b>" + game.team1.name + " " + str(game.team1score) + " " + game.team2.name + " " + str(game.team2score) + ".")
     general_descriptions.append("\n")
   game.outs = 0
   if game.teamAtBat == game.team1:
@@ -860,7 +860,7 @@ def printToUser(choice, away_team, num_games=0):
     box_score_df = pd.DataFrame(data=box_score, index=[away_team.name, home_team.name])
     df_html = box_score_df.to_html(classes='data', header="true")
     #print(box_score_df)
-    to_return = "\nScoring Plays: "
+    to_return = "<b>Scoring Plays</b><br>"
     for item in scoring_plays_description:
       to_return += ("\n" + item)
 
@@ -888,7 +888,7 @@ def printToUser(choice, away_team, num_games=0):
     #define game
     simulate_game(current_game)
 
-    str_to_return = "Full play by play:\n"
+    str_to_return = "<b>Full play by play</b><br>"
     #print("Full play by play:")
     for item in general_descriptions:
       str_to_return += (item + "\n")
@@ -932,11 +932,19 @@ def printToUser(choice, away_team, num_games=0):
       
     #num_games = int(input("How many games do you want to simulate? "))
     win_pcts = simulate_many_games(current_game, num_games)
-    to_return = "You simulated " + str(num_games) + " games."
-    to_return += "\n" + ("The " + current_game.team1.name + " won  " + str(win_pcts[0]*100) + " percent of the time.")
-    to_return += "\n" + ("The " + current_game.team2.name + " won  " + str(win_pcts[1]*100) + " percent of the time.")
+    to_return = "<b>You simulated " + str(num_games) + " games.</b>"
+    to_return += "\n" + ("The " + current_game.team1.name + 
+                         " won  " + str(round(win_pcts[0]*100, 2)) + " percent of the time.")
+    to_return += "\n" + ("The " + current_game.team2.name + 
+                         " won  " + str(round(win_pcts[1]*100, 2)) + " percent of the time.")
     
+    scoring_plays_description.clear()
+    general_descriptions.clear()
+    team1scores.clear()
+    team2scores.clear()
+
     return to_return, df_html
+
 
 
 
@@ -954,9 +962,13 @@ def simulate():
     num_games = int(num_games) if num_games.isdigit() else None
 
     result = None
-
+    
     result, df_html = printToUser(mode, away_team, num_games)
-    return render_template('index.html', result=result , table=df_html)
+    if (mode != "3"):
+      result = result.replace('.', '.<br>')
+    else:
+      result = result.replace("s.", "s.<br>")
+    return render_template('index.html', result=result, table=df_html)
 
 if __name__ == '__main__':
     app.run(debug=True)

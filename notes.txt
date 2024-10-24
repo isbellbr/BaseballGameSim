@@ -1,4 +1,4 @@
- - Learn how to display site on github pages
+ - Add new_lines (maybe with delimiters) with every \n character when importing to html
  - Change the style of <p> depending on the state of the mode variable (use js to add classes)
  - 
 
