@@ -922,7 +922,6 @@ def printToUser(choice, away_team, num_games=0):
 
     return str_to_return, df_html
 
-
   #Many Games
   if choice=="3":
     team1 = away_team
