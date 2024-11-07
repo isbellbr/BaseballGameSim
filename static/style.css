@@ -7,6 +7,11 @@ body {
     font-family: Arial, sans-serif;
 }
 
+h1 {
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
 .container {
     text-align: center;
 }
@@ -23,6 +28,7 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    margin-left: 15px;
 }
 
 p {
@@ -46,4 +52,8 @@ table.data th, table.data td {
 table.data th {
     background-color: rgb(43, 43, 77);
     color: white;
+}
+
+#sim_form {
+    font-size: 18px;
 }

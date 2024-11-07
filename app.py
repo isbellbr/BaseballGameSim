@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import random
+import teams
+import misc_funcs
 
 app = Flask(__name__)
 
@@ -772,50 +774,51 @@ def simulate_many_games(game, num_games):
   team2pct = team2wins/num_games
   return [team1pct, team2pct]
 
-def create_hitter(PAs, strikeouts, hits, doubles, triples, homers, walks, name):
-  k_pct = strikeouts/PAs
-  hit_pct = hits/PAs
-  double_pct = doubles/PAs
-  triple_pct = triples/PAs
-  homer_pct = homers/PAs
-  single_pct = hit_pct-double_pct-triple_pct-homer_pct
-  walk_pct = walks/PAs
-  batted_ball_out_pct = 1-hit_pct-k_pct-walk_pct
+# def create_hitter(PAs, strikeouts, hits, doubles, triples, homers, walks, name):
+#   k_pct = strikeouts/PAs
+#   hit_pct = hits/PAs
+#   double_pct = doubles/PAs
+#   triple_pct = triples/PAs
+#   homer_pct = homers/PAs
+#   single_pct = hit_pct-double_pct-triple_pct-homer_pct
+#   walk_pct = walks/PAs
+#   batted_ball_out_pct = 1-hit_pct-k_pct-walk_pct
   
-  new_hitter = Hitter(k_pct, single_pct, double_pct, triple_pct, homer_pct, batted_ball_out_pct, walk_pct, name)
-  return new_hitter
+#   new_hitter = Hitter(k_pct, single_pct, double_pct, triple_pct, homer_pct, batted_ball_out_pct, walk_pct, name)
+#   return new_hitter
 
 #Astros
 verlander = Pitcher(0.278, hit_pct=0.186, walk_pct=0.041, go_ao_pct=(0.66), name="Justin Verlander")
-altuve = create_hitter(604, 87, 158, 39, 0, 28, 66, "Jose Altuve")
-pena = create_hitter(558, 135, 132, 20, 2, 22, 22, "Jeremy Pena")
-yordan = create_hitter(561, 106, 144, 29, 2, 37, 78, "Yordan Alvarez")
+altuve = misc_funcs.create_hitter(604, 87, 158, 39, 0, 28, 66, "Jose Altuve")
+pena = misc_funcs.create_hitter(558, 135, 132, 20, 2, 22, 22, "Jeremy Pena")
+yordan = misc_funcs.create_hitter(561, 106, 144, 29, 2, 37, 78, "Yordan Alvarez")
 bregman = Hitter(0.117, 0.1245, 0.057, 0, 0.035, 0.5335, 0.133, "Alex Bregman")
-tucker = create_hitter(609, 95, 140, 28, 1, 30, 59, "Kyle Tucker")
-gurriel = create_hitter(584, 73, 132, 40, 0, 8, 30, "Yuli Gurriel")
-mancini = create_hitter(587, 135, 124, 23, 1, 18, 53, "Trey Mancini")
-chas = create_hitter(407, 106, 88, 12, 2, 14, 46, "Chas McCormick")
-vazquez = create_hitter(426, 69, 109, 23, 0, 9, 22, "Christian Vazquez")
+tucker = misc_funcs.create_hitter(609, 95, 140, 28, 1, 30, 59, "Kyle Tucker")
+gurriel = misc_funcs.create_hitter(584, 73, 132, 40, 0, 8, 30, "Yuli Gurriel")
+mancini = misc_funcs.create_hitter(587, 135, 124, 23, 1, 18, 53, "Trey Mancini")
+chas = misc_funcs.create_hitter(407, 106, 88, 12, 2, 14, 46, "Chas McCormick")
+vazquez = misc_funcs.create_hitter(426, 69, 109, 23, 0, 9, 22, "Christian Vazquez")
 astros_lineup = [altuve, pena, yordan, bregman, tucker, gurriel, mancini, chas, vazquez]
 
 
 #Phillies
 wheeler = Pitcher(0.269, "Update Later", 1.11, "Update Later", "Zach Wheeler")
-schwarber = create_hitter(669, 200, 126, 21, 3, 46, 86, "Kyle Schwarber")
-hoskins = create_hitter(672, 169, 145, 33, 2, 30, 72, "Rhys Hoskins")
-realmuto = create_hitter(562, 119, 139, 26, 5, 22, 41, "JT Realmuto")
+schwarber = misc_funcs.create_hitter(669, 200, 126, 21, 3, 46, 86, "Kyle Schwarber")
+hoskins = misc_funcs.create_hitter(672, 169, 145, 33, 2, 30, 72, "Rhys Hoskins")
+realmuto = misc_funcs.create_hitter(562, 119, 139, 26, 5, 22, 41, "JT Realmuto")
 harper = Hitter(0.204, 0.138, 0.066, 0.0023, 0.04205, 0.43945, 0.108, "Bryce Harper")
-castellanos = create_hitter(558, 130, 138, 27, 0, 13, 29, "Nick Castellanos")
-bohm = create_hitter(631, 110, 164, 24, 3, 13, 31, "Alec Bohm")
-segura = create_hitter(387, 58, 98, 9, 0, 10, 25, "Jean Segura")
-stott = create_hitter(466, 89, 100, 19, 2, 10, 36, "Bryson Stott")
-marsh = create_hitter(461, 158, 104, 18, 4, 11, 28, "Brandon Marsh")
+castellanos = misc_funcs.create_hitter(558, 130, 138, 27, 0, 13, 29, "Nick Castellanos")
+bohm = misc_funcs.create_hitter(631, 110, 164, 24, 3, 13, 31, "Alec Bohm")
+segura = misc_funcs.create_hitter(387, 58, 98, 9, 0, 10, 25, "Jean Segura")
+stott = misc_funcs.create_hitter(466, 89, 100, 19, 2, 10, 36, "Bryson Stott")
+marsh = misc_funcs.create_hitter(461, 158, 104, 18, 4, 11, 28, "Brandon Marsh")
 phillies_lineup = [schwarber, hoskins, realmuto, harper, castellanos, bohm, segura, stott, marsh]
 
+team_lineups = teams.get_lineups()
 
 #define teams
-astros = Team(starter=verlander, lineup=astros_lineup, name="Houston Astros")
-phillies = Team(wheeler, phillies_lineup, "Philadelphia Phillies")
+astros = Team(starter=verlander, lineup=team_lineups["Astros"], name="Houston Astros")
+phillies = Team(wheeler, lineup = team_lineups["Phillies"], name = "Philadelphia Phillies")
   
 
 #Function for providing output to the user based on their choice of simulation mode

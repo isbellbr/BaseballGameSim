@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="mlb.png">
     <title>MLB Game Simulation</title>
     <script>
         function toggleInput() {
@@ -20,7 +21,7 @@
 <body>
     <div class="container">
         <h1>MLB Game Simulator</h1>
-        <form method="POST" action="/simulate">
+        <form method="POST" action="/simulate" id="sim_form">
             <label for="mode">Select Simulation Mode:</label>
             <select id="mode" name="mode" onchange="toggleInput()">
                 <option value="1">Game Recap</option>
@@ -36,7 +37,7 @@
                 <label for="num_games">Enter Number of Games:</label>
                 <input type="number" name="num_games" min="1" />
             </div>
-            <button type="submit">Simulate</button>
+            <button type="submit" id="sim_button">Simulate</button>
         </form>
         <div id="table_div">
             {% if table %}

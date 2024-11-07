@@ -1,7 +1,5 @@
- - Add new_lines (maybe with delimiters) with every \n character when importing to html
- - Change the style of <p> depending on the state of the mode variable (use js to add classes)
- - 
-
- Big picture:
- - Allow users to create their own teams
+- Resolve the "New York" and "Los Angeles" issue
+ - Add all of the teams to the program and to the index.html form
+    - This will require modifying the driver functions in app.py and the away
+        team mechanisms
  
