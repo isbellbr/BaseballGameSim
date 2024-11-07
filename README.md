@@ -13,11 +13,11 @@ Presents the user with a choice between three options:
 
 **How I built it**
 
-The program was written with Python and utlized the Pandas library.
+The program was written with Python and utlized the Pandas library for data manipulation, the Flask library for web development, and the PyBaseball library for baseball statistics.
 
 **Future Goals**
 
-I hope to configure the program in a way in which data can be read in from Baseball Reference so that all 30 MLB teams and their current players can be used in the program. I also want to adjust the way the program determines the outcome of an at-bat in a way that is more realistic. Currently, the program weights the statistics of the batters too heavily. Lastly, I would like to turn this program into a web application so that it is more user-friendly and aesthetically-pleasing.
+I would like to adjust the way the program determines the outcome of an at-bat in a way that is more realistic. Currently, the program weights the statistics of the batters too heavily.
 
 **Website**
 
