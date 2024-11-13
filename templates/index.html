@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="icon" type="image/x-icon" href="mlb.png">
+    <link rel="icon" type="image/x-icon" href="static/mlb-favicon.png">
     <title>MLB Game Simulation</title>
     <script>
         function toggleInput() {
@@ -15,11 +15,20 @@
             } else {
                 numGamesInput.style.display = 'none';
             }
+            const homeTeam = document.getElementById("home-team").value;
+            const awayTeam = document.getElementById("away-team").value;
+            const teams = ["Astros", "Phillies"];
+            
+            teams.forEach(team => {
+                document.querySelector(`#away-team option[value="${team}"]`).disabled = team === homeTeam;
+                document.querySelector(`#home-team option[value="${team}"]`).disabled = team === awayTeam;
+    });
         }
     </script>
 </head>
 <body>
     <div class="container">
+        <img src="static/mlb.png" alt="mlb-logo" id="mlb-logo">
         <h1>MLB Game Simulator</h1>
         <form method="POST" action="/simulate" id="sim_form">
             <label for="mode">Select Simulation Mode:</label>
@@ -28,10 +37,17 @@
                 <option value="2">Play by Play</option>
                 <option value="3">Many Games Simulation</option>
             </select>
+            <label for="mode">Choose the Home Team</label>
+            <select id="home_team" name="home_team" onchange="toggleInput()">
+                <option value="Astros">Astros</option>
+                <option value="Phillies">Phillies</option>
+                <option value="Orioles">Orioles</option>
+            </select>
             <label for="mode">Choose the Away Team</label>
             <select id="away_team" name="away_team" onchange="toggleInput()">
-                <option value="1">Astros</option>
-                <option value="2">Phillies</option>
+                <option value="Phillies">Phillies</option>
+                <option value="Astros">Astros</option>
+                <option value="Orioles">Orioles</option>
             </select>
             <div id="numGamesInput" style="display:none;">
                 <label for="num_games">Enter Number of Games:</label>

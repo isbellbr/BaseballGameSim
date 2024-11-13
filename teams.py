@@ -1,8 +1,9 @@
-from pybaseball import batting_stats_bref, pitching_stats_bref
+from pybaseball import batting_stats_bref, batting_stats
 
 team_names = []
 team_lineups = []
 
+batting_data = batting_stats_bref(2024)
 
 def add_lineup(team_name, br_team):
     import misc_funcs
@@ -33,5 +34,6 @@ lineups_dict = dict(zip(team_names, team_lineups))
 def get_lineups():
     return lineups_dict
 
-for hitter in lineups_dict["Phillies"]:
-    print(hitter.name)
+# pitching_data = pitching_stats_bref(2024)
+# print(pitching_data.head())
+# print(pitching_data[pitching_data["IP"] > 162].head())

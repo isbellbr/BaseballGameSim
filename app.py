@@ -28,14 +28,27 @@ def groundout_or_flyout(pitcher):
 
   
 def at_bat(hitter, pitcher):
-  k_range_max = hitter.k_pct
-  single_range_max = k_range_max + hitter.single_pct
-  double_range_max = single_range_max + hitter.double_pct
-  triple_range_max = double_range_max + hitter.triple_pct
-  hr_range_max = triple_range_max + hitter.hr_pct
+  hitter_or_pitcher = random.random()
   random_float = random.random()
+  if (hitter_or_pitcher < 0.5):
+    k_range_max = hitter.k_pct
+    single_range_max = k_range_max + hitter.single_pct
+    double_range_max = single_range_max + hitter.double_pct
+    triple_range_max = double_range_max + hitter.triple_pct
+    hr_range_max = triple_range_max + hitter.hr_pct
+  else:
+    k_range_max = pitcher.k_pct
+    mod_single_pct = hitter.single_pct*pitcher.hit_pct
+    mod_double_pct = hitter.double_pct*pitcher.hit_pct
+    mod_triple_pct = hitter.triple_pct*pitcher.hit_pct
+    mod_homer_pct = hitter.hr_pct*pitcher.hit_pct
+    single_range_max = k_range_max + mod_single_pct
+    double_range_max = single_range_max + mod_double_pct 
+    triple_range_max = double_range_max + mod_triple_pct
+    hr_range_max = triple_range_max + mod_homer_pct
+
   if random_float <= k_range_max:
-    result = "Strikeout"
+      result = "Strikeout"
   elif random_float <= single_range_max:
     result = "Single"
   elif random_float <= double_range_max:
@@ -47,6 +60,8 @@ def at_bat(hitter, pitcher):
   else:
     result = groundout_or_flyout(pitcher)
   return result
+
+
 
 
 #Helper Function for the Description Creation Functions
@@ -186,7 +201,7 @@ def updateGameSituation(game, result):
       if (game.runner3pos != 0):
         #The Bases are Loaded
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 2)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 2)
         game.halfInningScore+=2
         game.runner1pos=1
         game.runner2pos=2
@@ -196,7 +211,7 @@ def updateGameSituation(game, result):
       elif (game.runner2pos == 3 and game.runner1pos == 2):
         #Runner on Second and Third
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 2)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 2)
         game.halfInningScore+=2
         game.runner1pos=1
         game.runner2pos=0
@@ -206,7 +221,7 @@ def updateGameSituation(game, result):
       elif (game.runner2pos == 3 and game.runner1pos == 1):
         #Runner on First and Third
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=1
         game.runner2pos=2
@@ -216,7 +231,7 @@ def updateGameSituation(game, result):
       elif (game.runner2pos == 2 and game.runner1pos == 1):
         #Runner on First and Second
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=1
         game.runner2pos=3
@@ -226,7 +241,7 @@ def updateGameSituation(game, result):
       elif (game.runner1pos == 3):
         #Runner on Third
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=1
         game.runner2pos=0
@@ -236,7 +251,7 @@ def updateGameSituation(game, result):
       elif (game.runner1pos == 2):
         #Runner on Second
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=1
         game.runner2pos=0
@@ -264,7 +279,7 @@ def updateGameSituation(game, result):
       if (game.runner3pos != 0):
         #The Bases are Loaded
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 2)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 2)
         game.halfInningScore+=2
         game.runner1pos=2
         game.runner2pos=3
@@ -274,7 +289,7 @@ def updateGameSituation(game, result):
       elif (game.runner2pos == 3 and game.runner1pos == 2):
         #Runner on Second and Third
 #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 2)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 2)
         game.halfInningScore+=2
         game.runner1pos=2
         game.runner2pos=0
@@ -284,7 +299,7 @@ def updateGameSituation(game, result):
       elif (game.runner2pos == 3 and game.runner1pos == 1):
         #Runner on First and Third
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=2
         game.runner2pos=3
@@ -294,7 +309,7 @@ def updateGameSituation(game, result):
       elif (game.runner2pos == 2 and game.runner1pos == 1):
         #Runner on First and Second
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=2
         game.runner2pos=3
@@ -304,7 +319,7 @@ def updateGameSituation(game, result):
       elif (game.runner1pos == 3):
         #Runner on Third
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=2
         game.runner2pos=0
@@ -314,7 +329,7 @@ def updateGameSituation(game, result):
       elif (game.runner1pos == 2):
         #Runner on Second
         #General Description
-        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher, result, 1)
+        general_description(game.inning, game.outs, game.current_hitter.name, game.current_pitcher.name, result, 1)
         game.halfInningScore+=1
         game.runner1pos=2
         game.runner2pos=0
@@ -693,16 +708,16 @@ def simulate_half_inning(game):
 
   if game.teamAtBat == game.team1:
     team1scores.append(game.halfInningScore)
+    game.team1score+=game.halfInningScore
+
   if game.teamAtBat == game.team2:
     team2scores.append(game.halfInningScore)
-  if game.teamAtBat == game.team1:
-    game.team1score+=game.halfInningScore
-  if game.teamAtBat == game.team2:
     game.team2score+=game.halfInningScore
+
   general_descriptions.append("\n")
   if game.teamAtBat == game.team2:
     general_descriptions.append("End of Inning " + str(game.inning-1) + ".<b>Score: </b>" + game.team1.name + " " + str(game.team1score) + " " + game.team2.name + " " + str(game.team2score) + ".")
-    general_descriptions.append("\n")
+    general_descriptions.append("<br>")
   game.outs = 0
   if game.teamAtBat == game.team1:
     game.current_pitcher = game.team1.starter
@@ -774,72 +789,35 @@ def simulate_many_games(game, num_games):
   team2pct = team2wins/num_games
   return [team1pct, team2pct]
 
-# def create_hitter(PAs, strikeouts, hits, doubles, triples, homers, walks, name):
-#   k_pct = strikeouts/PAs
-#   hit_pct = hits/PAs
-#   double_pct = doubles/PAs
-#   triple_pct = triples/PAs
-#   homer_pct = homers/PAs
-#   single_pct = hit_pct-double_pct-triple_pct-homer_pct
-#   walk_pct = walks/PAs
-#   batted_ball_out_pct = 1-hit_pct-k_pct-walk_pct
-  
-#   new_hitter = Hitter(k_pct, single_pct, double_pct, triple_pct, homer_pct, batted_ball_out_pct, walk_pct, name)
-#   return new_hitter
-
 #Astros
 verlander = Pitcher(0.278, hit_pct=0.186, walk_pct=0.041, go_ao_pct=(0.66), name="Justin Verlander")
-altuve = misc_funcs.create_hitter(604, 87, 158, 39, 0, 28, 66, "Jose Altuve")
-pena = misc_funcs.create_hitter(558, 135, 132, 20, 2, 22, 22, "Jeremy Pena")
-yordan = misc_funcs.create_hitter(561, 106, 144, 29, 2, 37, 78, "Yordan Alvarez")
-bregman = Hitter(0.117, 0.1245, 0.057, 0, 0.035, 0.5335, 0.133, "Alex Bregman")
-tucker = misc_funcs.create_hitter(609, 95, 140, 28, 1, 30, 59, "Kyle Tucker")
-gurriel = misc_funcs.create_hitter(584, 73, 132, 40, 0, 8, 30, "Yuli Gurriel")
-mancini = misc_funcs.create_hitter(587, 135, 124, 23, 1, 18, 53, "Trey Mancini")
-chas = misc_funcs.create_hitter(407, 106, 88, 12, 2, 14, 46, "Chas McCormick")
-vazquez = misc_funcs.create_hitter(426, 69, 109, 23, 0, 9, 22, "Christian Vazquez")
-astros_lineup = [altuve, pena, yordan, bregman, tucker, gurriel, mancini, chas, vazquez]
-
 
 #Phillies
-wheeler = Pitcher(0.269, "Update Later", 1.11, "Update Later", "Zach Wheeler")
-schwarber = misc_funcs.create_hitter(669, 200, 126, 21, 3, 46, 86, "Kyle Schwarber")
-hoskins = misc_funcs.create_hitter(672, 169, 145, 33, 2, 30, 72, "Rhys Hoskins")
-realmuto = misc_funcs.create_hitter(562, 119, 139, 26, 5, 22, 41, "JT Realmuto")
-harper = Hitter(0.204, 0.138, 0.066, 0.0023, 0.04205, 0.43945, 0.108, "Bryce Harper")
-castellanos = misc_funcs.create_hitter(558, 130, 138, 27, 0, 13, 29, "Nick Castellanos")
-bohm = misc_funcs.create_hitter(631, 110, 164, 24, 3, 13, 31, "Alec Bohm")
-segura = misc_funcs.create_hitter(387, 58, 98, 9, 0, 10, 25, "Jean Segura")
-stott = misc_funcs.create_hitter(466, 89, 100, 19, 2, 10, 36, "Bryson Stott")
-marsh = misc_funcs.create_hitter(461, 158, 104, 18, 4, 11, 28, "Brandon Marsh")
-phillies_lineup = [schwarber, hoskins, realmuto, harper, castellanos, bohm, segura, stott, marsh]
+wheeler = Pitcher(0.269, hit_pct=0.223, walk_pct = 0.050, go_ao_pct=1.11, name="Zach Wheeler")
 
 team_lineups = teams.get_lineups()
 
 #define teams
 astros = Team(starter=verlander, lineup=team_lineups["Astros"], name="Houston Astros")
-phillies = Team(wheeler, lineup = team_lineups["Phillies"], name = "Philadelphia Phillies")
+phillies = Team(starter = wheeler, lineup = team_lineups["Phillies"], name = "Philadelphia Phillies")
+orioles = Team(starter=verlander, lineup=team_lineups["Orioles"], name = "Baltimore Orioles")
+
+teams = {"Astros": astros, "Phillies": phillies, "Orioles": orioles}
   
 
 #Function for providing output to the user based on their choice of simulation mode
-def printToUser(choice, away_team, num_games=0):
+def printToUser(choice, home_team, away_team, num_games=0):
   df_html = None
   to_return = None
   str_to_return = None
+  away_team = teams[away_team]
+  home_team = teams[home_team]
   
   #Game Recap
   if choice=="1":
     to_return = ""
 
-    team1 = away_team
-    if team1==1:
-      current_game = Game(astros, phillies)
-      away_team = astros
-      home_team = phillies
-    if team1==2:
-      current_game = Game(phillies, astros)
-      away_team = phillies
-      home_team = astros
+    current_game = Game(away_team, home_team)
     #define game
     simulate_game(current_game)
     team1sum = 0
@@ -879,15 +857,7 @@ def printToUser(choice, away_team, num_games=0):
 
   #Play by Play    
   if choice=="2":
-    team1 = away_team
-    if team1==1:
-      current_game = Game(astros, phillies)
-      away_team = astros
-      home_team = phillies
-    if team1==2:
-      current_game = Game(phillies, astros)
-      away_team = phillies
-      home_team = astros
+    current_game = Game(away_team, home_team)
     #define game
     simulate_game(current_game)
 
@@ -927,11 +897,7 @@ def printToUser(choice, away_team, num_games=0):
 
   #Many Games
   if choice=="3":
-    team1 = away_team
-    if team1==1:
-      current_game = Game(astros, phillies)
-    if team1==2:
-      current_game = Game(phillies, astros)
+    current_game = Game(away_team, home_team)
       
     #num_games = int(input("How many games do you want to simulate? "))
     win_pcts = simulate_many_games(current_game, num_games)
@@ -959,14 +925,15 @@ def index():
 def simulate():
     mode = request.form.get('mode')
     num_games = request.form.get('num_games')
-    away_team = int(request.form.get('away_team'))
+    home_team = request.form.get('home_team')
+    away_team = request.form.get('away_team')
 
     # Convert num_games to integer if provided
     num_games = int(num_games) if num_games.isdigit() else None
 
     result = None
     
-    result, df_html = printToUser(mode, away_team, num_games)
+    result, df_html = printToUser(mode, home_team, away_team, num_games)
     if (mode != "3"):
       result = result.replace('.', '.<br>')
     else:
