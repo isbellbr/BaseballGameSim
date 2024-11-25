@@ -1,5 +1,5 @@
 - Resolve the "New York" and "Los Angeles" issue
  - Add all of the teams to the program and to the index.html form
-    - This will require modifying the driver functions in app.py and the away
-        team mechanisms
+    - Add the team class to the teams.py file and create a function that returns all of the
+    teams as dictionary with team names (e.g "Orioles") as keys and class "Team" objects as values
  

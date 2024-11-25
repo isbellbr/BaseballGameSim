@@ -25,6 +25,12 @@ def add_lineup(team_name, br_team):
         team_lineup.append(misc_funcs.create_hitter(PAs, Ks, hits, doubles, triples, homers, walks, name))
     team_lineups.append(team_lineup)
 
+team_names_to_add = ["Red Sox", "Blue Jays", "Rays"]
+teams_to_add = ["Boston", "Toronto", "Tampa Bay"]
+
+for i in range(len(teams_to_add)):
+    add_lineup(team_names_to_add[i], teams_to_add[i])
+
 add_lineup("Orioles", "Baltimore")
 add_lineup("Astros", "Houston")
 add_lineup("Phillies", "Philadelphia")

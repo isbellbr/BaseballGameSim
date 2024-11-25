@@ -795,12 +795,14 @@ verlander = Pitcher(0.278, hit_pct=0.186, walk_pct=0.041, go_ao_pct=(0.66), name
 #Phillies
 wheeler = Pitcher(0.269, hit_pct=0.223, walk_pct = 0.050, go_ao_pct=1.11, name="Zach Wheeler")
 
+burnes = Pitcher(0.378, hit_pct=0.186, walk_pct=0.041, go_ao_pct=(0.66), name="Corbin Burnes")
+
 team_lineups = teams.get_lineups()
 
 #define teams
 astros = Team(starter=verlander, lineup=team_lineups["Astros"], name="Houston Astros")
 phillies = Team(starter = wheeler, lineup = team_lineups["Phillies"], name = "Philadelphia Phillies")
-orioles = Team(starter=verlander, lineup=team_lineups["Orioles"], name = "Baltimore Orioles")
+orioles = Team(starter=burnes, lineup=team_lineups["Orioles"], name = "Baltimore Orioles")
 
 teams = {"Astros": astros, "Phillies": phillies, "Orioles": orioles}
   
