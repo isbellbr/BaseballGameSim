@@ -18,7 +18,3 @@ The program was written with Python and utlized the Pandas library for data mani
 **Future Goals**
 
 I would like to adjust the way the program determines the outcome of an at-bat in a way that is more realistic. Currently, the program weights the statistics of the batters too heavily.
-
-**Website**
-
-https://baseballgamesim.onrender.com/
